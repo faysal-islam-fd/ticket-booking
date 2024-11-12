@@ -5,8 +5,18 @@ import { useForm } from "react-hook-form"
 
 const Register = () => {
 
-    function onSubmit(data){
-          console.log(data);
+    async function onSubmit(data){
+          const res = await fetch("/v1/api/auth/register", {
+            method:"POST",
+            headers:{
+              "Content-Type":"application/json"
+            },
+            body: JSON.stringify(data)
+          }) 
+
+          const result = await res.json()
+          console.log(result);
+          
           
     }
     const {
