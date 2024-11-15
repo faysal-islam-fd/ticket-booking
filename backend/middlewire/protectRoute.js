@@ -3,6 +3,8 @@ import User from '../models/user.model.js'
 
 
 const protectRoute =async(req,res,next)=>{
+    
+    
     try{
         const token = req.cookies.token
         if(!token){
@@ -21,6 +23,8 @@ const protectRoute =async(req,res,next)=>{
         next()
     }
     catch(error){
+        console.log("error in protect ROute", error);
+        
         return res.status(500).json({success:false,message:"Internal Server Error"})
     }
 }

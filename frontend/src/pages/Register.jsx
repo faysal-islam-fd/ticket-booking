@@ -2,9 +2,10 @@ import { Link } from "react-router-dom"
 import { ThemeContext } from "../context/ThemeContext"
 import { useContext } from "react"
 import { useForm } from "react-hook-form"
+import { AuthContext } from "../context/AuthConext"
 
 const Register = () => {
-
+    const {setUser} = useContext(AuthContext)
     async function onSubmit(data){
           const res = await fetch("/v1/api/auth/register", {
             method:"POST",
@@ -15,9 +16,9 @@ const Register = () => {
           }) 
 
           const result = await res.json()
-          console.log(result);
+        
           
-          
+          setUser(localStorage.setItem("authUser",JSON.stringify(result.data)))
     }
     const {
         register,

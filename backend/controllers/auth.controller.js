@@ -17,7 +17,7 @@ export const register = async (req, res) => {
         const user = new User({...req.body,password: hashedPassword})
         await user.save()
         generateToken(user._id,res)
-        res.status(201).json({success:true,message:"User registered successfully"})
+        res.status(201).json({success:true,message:"User registered successfully",data: user._id})
     }
     catch(error){
         res.status(500).json({success:false,message:"Internal Server Error"})
@@ -41,7 +41,7 @@ export const login = async (req, res) => {
             return res.status(400).json({success:false,message:"Wrong password"})
         }
         generateToken(user._id,res)
-        res.status(200).json({success:true,message:"User logged in successfully"})
+        res.status(200).json({success:true,message:"User logged in successfully",data:user._id})
 
     }catch(error){
         res.status(500).json({success:false,message:"Internal Server Error"})

@@ -4,60 +4,61 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { formatDate } from "../utils/formatDate";
 import { formatTime } from "../utils/formatTime";
 import { calculateTimeDifference } from "../utils/timeDifferent";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../context/AuthConext";
 
 
 const SearchResult = () => {
 
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-
+  const [isLoading,setIsLoading] = useState(true)
+  const [searchedBus,setSearchedBus] = useState([])
+  console.log(searchParams.toString());
   
+  useEffect(()=>{
+    (async function searchBus(){
+      setIsLoading(true)
+     const res = await fetch(`/v1/api/bus?${searchParams.toString()}`)
+     const searchedBuses = await res.json()
+     setSearchedBus(searchedBuses)
+   setIsLoading(false)
+     
+    })()
+ },[])
+ 
+ console.log(searchedBus);
+ 
+ 
   const type = searchParams.get('type') || 'bus';
   const from = searchParams.get('from') || '';
   const to = searchParams.get('to') || '';
   const date = searchParams.get('date') || '';
 
-    const user = true;
-  const results = [
-    {
-      _id: '1',
-      operator: 'Green Line',
-      departure: '08:00',
-      arrival: '14:00',
-      price: 800,
-      seats: 25,
-      type: 'AC',
-    },
-    {
-      _id: '2',
-      operator: 'Hanif Enterprise',
-      departure: '09:30',
-      arrival: '15:30',
-      price: 750,
-      seats: 15,
-      type: 'Non-AC',
-    },
-    {
-      _id: '3',
-      operator: 'Shyamoli',
-      departure: '10:00',
-      arrival: '16:00',
-      price: 850,
-      seats: 20,
-      type: 'AC',
-    },
-  ];
+    const {user} = useContext(AuthContext)
+
+console.log(user);
 
   const handleSelectSeats = (result_id) => {
     if (!user) {
-      // Store the intended destination in sessionStorage
       sessionStorage.setItem('redirectAfterLogin', `/booking/${result_id}?type=${type}&date=${date}`);
       navigate('/login');
       return;
     }
     navigate(`/booking/${result_id}?type=${type}&date=${date}`);
   };
-
+  
+  if(searchedBus.success === false){ 
+    return <div className=" h-screen flex justify-center items-center">
+      <h1 className="text-2xl text-accent">{searchedBus.message}</h1>
+    </div>
+  }
+  
+  if(isLoading){
+    return <div className=" h-screen flex justify-center items-center">
+      <span className="loading loading-spinner loading-lg bg-accent"></span>
+    </div>
+  }
   
   return (
     <div className="min-h-screen  pt-24 pb-12">
@@ -89,36 +90,38 @@ const SearchResult = () => {
 
       {/* Results */}
       <div className="space-y-4">
-        {results.map((result) => (
+        {searchedBus.buses.map((result) => {
+        
+          return (
           <div key={result._id} className="bg-base-300 rounded-lg shadow-md p-6">
-            <div className="flex items-center justify-between flex-wrap gap-6">
+              <div className="flex items-center justify-between flex-wrap gap-6">
               <div className="space-y-2">
-                <h3 className="text-lg font-semibold">{result.operator}</h3>
+                <h3 className="text-lg font-semibold">{result.busName}</h3>
                 <div className="flex items-center space-x-2 text-sm text-gray-500">
-                  <span>{result.type}</span>
+                  <span>{result.from}</span>
                 </div>
               </div>
 
               <div className="space-y-2 text-center">
-                <div className="text-lg font-medium">{formatTime(result.departure)}</div>
+                <div className="text-lg font-medium">{result.departureTime}</div>
                 <div className="flex items-center text-sm text-gray-500">
-                  <span>{calculateTimeDifference(result.departure,result.arrival)}</span>
+                  <span>{calculateTimeDifference(result.departureTime,result.arrivalTime)}</span>
                 </div>
               </div>
 
               <div className="space-y-2 text-center">
-                <div className="text-lg font-medium">{formatTime(result.arrival)}</div>
+                <div className="text-lg font-medium">{result.arrivalTime}</div>
                 <div className="text-sm text-gray-500">
-                  {formatDate(new Date(date), 'MMM dd')}
+                  {formatDate(new Date(date))}
                 </div>
               </div>
 
               <div className="space-y-2 text-center">
                 <div className="text-lg font-medium text-accent">
-                  ${result.price}
+                  ${result.fare}
                 </div>
                 <div className="text-sm text-gray-500">
-                  {result.seats} seats left
+                  {result.seats.filter(seat=> seat.status==="available").length} seats left
                 </div>
               </div>
 
@@ -128,9 +131,11 @@ const SearchResult = () => {
               >
                 Select Seats
               </button>
-            </div>
+              </div>
           </div>
-        ))}
+          )
+          
+        })}
       </div>
     </div>
   </div>

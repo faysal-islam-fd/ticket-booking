@@ -2,19 +2,31 @@ import { useContext, useState } from "react"
 import { FaEye, FaEyeSlash } from "react-icons/fa6"
 import { Link } from "react-router-dom"
 import { ThemeContext } from "../context/ThemeContext"
+import { AuthContext } from "../context/AuthConext"
+
 
 const Login = () => {
     const {theme} = useContext(ThemeContext)
-  
+    const {setUser} = useContext(AuthContext)
     const searchTheme = theme === "forest" ? "bg-[#171212]" : "bg-[#FAF7F5]"
     const [showPassword,setShowPassword] = useState(false)
     
     const [password,setPassword] = useState("")
     const [email,setEmail] = useState("")
 
-    function handleLogin(e){
+    async function handleLogin(e){
       e.preventDefault()
-    console.log(password,email);
+      const res = await fetch("/v1/api/auth/login", {
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body: JSON.stringify({email,password})
+      })
+      const data = await res.json()
+     
+      setUser(localStorage.setItem("authUser",JSON.stringify(data.data)))
+      
     }
     
     return (

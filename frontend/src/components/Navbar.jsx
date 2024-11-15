@@ -5,8 +5,14 @@ import ThemeSwitcher from "./ThemeSwitcher"
 import { FaTrainSubway } from "react-icons/fa6"
 import { IoMdAirplane } from "react-icons/io"
 import { Link } from "react-router-dom"
+import { AuthContext } from "../context/AuthConext"
+import { useContext } from "react"
 const Navbar = () => {
 
+  const {user,setUser} = useContext(AuthContext)
+  function handleLogout(){
+    setUser(localStorage.removeItem('authUser'))
+  }
   return (
     
   <div className="navbar   px-10">
@@ -45,7 +51,14 @@ const Navbar = () => {
     </ul>
   </div>
   <div className="navbar-end flex gap-2 md:gap-4">
-    <Link to="/login" className="bg-accent px-4 py-2 rounded-lg font-semibold">Login</Link>
+    {
+      user ?
+      <button  onClick={handleLogout} className="bg-neutral px-4 py-2 rounded-lg font-semibold">Logout</button>
+      :
+      <Link to="/login" className="bg-accent px-4 py-2 rounded-lg font-semibold">Login</Link>
+  
+    }
+  
     <ThemeSwitcher/>
   </div>
 </div>
