@@ -1,5 +1,8 @@
+
 import Hero from "../components/Hero"
 import HomeFeatures from "../components/HomeFeatures"
+import Newsletter from "../components/Newsletter"
+import PopularDestinations from "../components/PopularDestinations"
 
 
 
@@ -9,6 +12,8 @@ const Home = () => {
     <>
         <Hero />
         <HomeFeatures />
+        <PopularDestinations />
+        <Newsletter />
     </>
   )
 }
