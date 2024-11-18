@@ -30,7 +30,7 @@ const SearchForm = () => {
               onClick={() => setSearchType(type)}
               className={`px-6 py-2 rounded-full capitalize ${
                 searchType === type
-                  ? 'bg-indigo-600 text-white'
+                  ? 'bg-[#ff4b2b] text-white'
                   : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
               }`}
             >
@@ -48,7 +48,7 @@ const SearchForm = () => {
                 <input
                   type="text"
                   required
-                  className="pl-10 w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-600 focus:border-transparent"
+                  className="pl-10 w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#ff4b2b] focus:border-transparent"
                   placeholder="Departure City"
                   value={formData.from}
                   onChange={(e) => setFormData({ ...formData, from: e.target.value })}
@@ -63,7 +63,7 @@ const SearchForm = () => {
                 <input
                   type="text"
                   required
-                  className="pl-10 w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-600 focus:border-transparent"
+                  className="pl-10 w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#ff4b2b] focus:border-transparent"
                   placeholder="Arrival City"
                   value={formData.to}
                   onChange={(e) => setFormData({ ...formData, to: e.target.value })}
@@ -78,7 +78,7 @@ const SearchForm = () => {
                 <input
                   type="date"
                   required
-                  className="pl-10 w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-600 focus:border-transparent"
+                  className="pl-10 w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#ff4b2b] focus:border-transparent"
                   value={formData.date}
                   onChange={(e) => setFormData({ ...formData, date: e.target.value })}
                   min={new Date().toISOString().split('T')[0]}
@@ -90,7 +90,7 @@ const SearchForm = () => {
               <label className="block text-sm font-medium text-gray-700 mb-1">&nbsp;</label>
               <button
                 type="submit"
-                className="w-full bg-indigo-600 text-white p-3 rounded-md hover:bg-indigo-700 flex items-center justify-center space-x-2"
+                className="w-full bg-[#ff4b2b] text-white p-3 rounded-md hover:bg-indigo-700 flex items-center justify-center space-x-2"
               >
                 <Search className="h-5 w-5" />
                 <span>Search</span>
