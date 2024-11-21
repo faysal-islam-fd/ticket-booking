@@ -7,6 +7,7 @@ import SeatSelection from "./pages/SeatSelection"
 import { AuthGuard } from "./components/AuthGuard"
 import Dashboard from "./pages/Dashboard"
 import { AuthProvider } from "./context/AuthConext"
+import BookingConfirmation from "./pages/BookingConfirmation"
 
 
 
@@ -28,6 +29,14 @@ const App = () => {
               <AuthGuard>
                 <SeatSelection />
               </AuthGuard>}
+              />
+                <Route
+                path="/booking/confirm/:id"
+                element={
+                  <AuthGuard>
+                    <BookingConfirmation />
+                  </AuthGuard>
+                }
               />
             </Routes>
           <Footer />
