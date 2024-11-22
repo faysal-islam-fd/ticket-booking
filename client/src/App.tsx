@@ -8,6 +8,7 @@ import { AuthGuard } from "./components/AuthGuard"
 import Dashboard from "./pages/Dashboard"
 import { AuthProvider } from "./context/AuthConext"
 import BookingConfirmation from "./pages/BookingConfirmation"
+import UserProfile from "./pages/UserProfile"
 
 
 
@@ -23,6 +24,14 @@ const App = () => {
               <Route path="/" element={<><Home /></>} />
               <Route path="/search" element={<SearchResults />} />
               <Route path="/dashboard" element={<AuthGuard><Dashboard /></AuthGuard>} />
+              <Route
+                path="/profile"
+                element={
+                  <AuthGuard>
+                    <UserProfile />
+                  </AuthGuard>
+                }
+              />    
               <Route 
               path="/booking/:id"
               element={
