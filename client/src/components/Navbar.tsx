@@ -7,6 +7,8 @@ import { useAuth } from '../context/AuthConext';
 const Navbar = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const {user,logout} = useAuth();
+ 
+  
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -14,7 +16,6 @@ const Navbar = () => {
     navigate('/');
   };
 
-  console.log("navbar executed");
   
   return (
     <nav className="bg-[#121212] text-stone-200 shadow-lg fixed w-full z-50">
@@ -29,14 +30,14 @@ const Navbar = () => {
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
             <Link to="/" className=" hover:text-[#ff4b2b]">Bus</Link>
-            <Link to="/" className=" hover:text-[#ff4b2b]">Train</Link>
-            <Link to="/" className=" hover:text-[#ff4b2b]">Flight</Link>
+            <Link to="/" className=" hover:text-[#ff4b2b]">Air</Link>
+            <Link to="/dashboard" className=" hover:text-[#ff4b2b]">Dashboard</Link>
             <div className="flex items-center space-x-4">
               
               {user ? (
                 <div className="flex items-center space-x-4">
                   <Link
-                    to="/dashboard"
+                    to="/profile"
                     className="flex items-center  hover:text-[#ff4b2b]"
                   >
                     <User className="w-5 h-5 mr-1" />
@@ -53,7 +54,7 @@ const Navbar = () => {
               ) : (
                 <Link
                   to="/login"
-                  className="flex items-center bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700"
+                  className="flex items-center bg-[#ff4b2b] text-white px-4 py-2 rounded-md hover:bg-indigo-700"
                 >
                   <User className="w-5 h-5 mr-1" />
                   <span>Sign In</span>

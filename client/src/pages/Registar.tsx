@@ -31,14 +31,14 @@ const Register = () => {
         body: JSON.stringify({ name, email, password }),
       })
       const resData = await res.json();
-      console.log(resData);
+      
       
       if(!resData.success){
         toast.error(resData.message);
         return
       }
       setUser(resData.user);
-      localStorage.setItem('user', JSON.stringify(resData.user.id));
+      localStorage.setItem('user', JSON.stringify(resData.user));
       toast.success(resData.message);
 
       navigate('/dashboard'); 

@@ -8,16 +8,13 @@ import { User, AuthContextType } from '../types';
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
 
-  console.log(user);
-useEffect(()=>{
-const savedUser = localStorage.getItem("user")
-if(savedUser){
-  setUser(JSON.parse(savedUser));
-}
-else{
-  setUser(null);
-}
-},[user])
+  useEffect(() => {
+    const user = localStorage.getItem('user');
+    if (user) {
+      setUser(JSON.parse(user));
+    }
+  }, []);
+  
   const logout = () => {
     localStorage.removeItem('user');    
     setUser(null);

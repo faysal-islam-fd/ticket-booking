@@ -24,7 +24,7 @@ const SearchForm = () => {
     return (
       <div className="bg-white rounded-lg shadow-xl p-6 w-full max-w-4xl mx-auto">
         <div className="flex space-x-4 mb-6">
-          {['bus', 'train', 'flight'].map((type) => (
+          {['bus', 'Air'].map((type) => (
             <button
               key={type}
               onClick={() => setSearchType(type)}

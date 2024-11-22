@@ -1,6 +1,7 @@
 
 
 import { ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const destinations = [
   {
@@ -56,17 +57,16 @@ const PopularDestinations = () => {
                     <p className="text-gray-400">Starting from</p>
                     <p className="text-[#ff4b2b] font-bold">৳{destination.price}</p>
                   </div>
-                  <button className="text-[#ff4b2b] hover:text-[#ff3b1b] flex items-center">
+                  <Link to="/booking" className="text-[#ff4b2b] hover:text-[#ff3b1b] flex items-center">
                     Book Now
                     <ArrowRight className="ml-2 h-4 w-4" />
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>
           ))}
         </div>
       </div>
-      import React from 'react';
     </section>
   );
 };

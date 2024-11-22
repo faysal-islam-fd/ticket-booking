@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { User, Mail, Phone, Shield } from 'lucide-react';
+import { useAuth } from '../context/AuthConext';
 
 const UserProfile = () => {
-//   const { user } = useAuth();
-const user = true
+  const { user } = useAuth();
+  console.log(user);
+  
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
     name: user?.name || '',
@@ -18,9 +20,9 @@ const user = true
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-24 pb-12">
+    <div className="min-h-screen text-white bg-[#121212] pt-24 pb-12">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white rounded-lg shadow-md p-6">
+        <div className="bg-[#1a1a1a] rounded-lg shadow-md p-6">
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-2xl font-bold">Profile Settings</h2>
             <button
@@ -33,7 +35,7 @@ const user = true
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-gray-100 mb-1">
                 Full Name
               </label>
               <div className="relative">
@@ -41,7 +43,7 @@ const user = true
                 <input
                   type="text"
                   disabled={!isEditing}
-                  className="pl-10 w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-600 focus:border-transparent disabled:bg-gray-100"
+                  className="pl-10 w-full text-black p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-600 focus:border-transparent disabled:bg-gray-100"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 />
@@ -49,7 +51,7 @@ const user = true
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-gray-100 mb-1">
                 Email Address
               </label>
               <div className="relative">
@@ -57,28 +59,14 @@ const user = true
                 <input
                   type="email"
                   disabled={!isEditing}
-                  className="pl-10 w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-600 focus:border-transparent disabled:bg-gray-100"
+                  className="pl-10 w-full text-black p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-600 focus:border-transparent disabled:bg-gray-100"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 />
               </div>
             </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Phone Number
-              </label>
-              <div className="relative">
-                <Phone className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
-                <input
-                  type="tel"
-                  disabled={!isEditing}
-                  className="pl-10 w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-600 focus:border-transparent disabled:bg-gray-100"
-                  value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                />
-              </div>
-            </div>
+            
 
             {isEditing && (
               <div className="flex justify-end">
@@ -89,13 +77,13 @@ const user = true
             )}
           </form>
 
-          <div className="mt-8 pt-8 border-t">
+          {/* <div className="mt-8 pt-8 border-t">
             <h3 className="text-lg font-semibold mb-4">Security Settings</h3>
             <button className="flex items-center space-x-2 text-indigo-600 hover:text-indigo-800">
               <Shield className="h-5 w-5" />
               <span>Change Password</span>
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

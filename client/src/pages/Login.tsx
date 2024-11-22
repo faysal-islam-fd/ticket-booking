@@ -29,7 +29,7 @@ const Login = () => {
       }
       toast.success(resData.message);
       setUser(resData.user);
-      localStorage.setItem('user', JSON.stringify(resData.user.id));
+      localStorage.setItem('user', JSON.stringify(resData.user));
       navigate('/dashboard');
     } catch (error) {
       toast.error('Login failed');

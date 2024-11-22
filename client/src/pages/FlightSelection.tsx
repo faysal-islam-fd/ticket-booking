@@ -9,9 +9,9 @@ const FlightSelection = () => {
   const date = searchParams.get('date') || '';
 
   const seatClasses = [
-    { id: 'economy', name: 'Economy', price: 12000, available: 120 },
-    { id: 'business', name: 'Business', price: 35000, available: 24 },
-    { id: 'first', name: 'First Class', price: 75000, available: 8 },
+    { id: 'economy', name: 'Economy', price: 500, available: 120 },
+    { id: 'business', name: 'Business', price: 1000, available: 24 },
+    { id: 'first', name: 'First Class', price: 4000, available: 8 },
   ];
 
   const handleSelectClass = (classId: string, price: number) => {
@@ -19,12 +19,12 @@ const FlightSelection = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#121212] pt-24 pb-12">
+    <div className="min-h-screen text-white bg-[#121212] pt-24 pb-12">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white rounded-lg shadow-md p-6">
+        <div className="bg-[#1a1a1a] rounded-lg shadow-md p-6">
           <div className="mb-8">
             <h2 className="text-2xl font-bold mb-4">Select Your Class</h2>
-            <div className="flex items-center space-x-4 text-gray-600">
+            <div className="flex items-center space-x-4 text-gray-100">
               <div className="flex items-center">
                 <Plane className="h-5 w-5 mr-2" />
                 <span>BG-147</span>
@@ -44,15 +44,15 @@ const FlightSelection = () => {
             {seatClasses.map((seatClass) => (
               <div
                 key={seatClass.id}
-                className="border rounded-lg p-6 hover:border-indigo-600 transition-colors"
+                className="border rounded-lg p-6 hover:border-[#ff4b2b] transition-colors"
               >
                 <div className="flex justify-between items-center">
                   <div>
                     <h3 className="text-xl font-semibold mb-2">{seatClass.name}</h3>
-                    <p className="text-gray-600">
+                    <p className="text-gray-300">
                       {seatClass.available} seats available
                     </p>
-                    <ul className="mt-2 space-y-1 text-sm text-gray-500">
+                    <ul className="mt-2 space-y-1 text-sm text-gray-300">
                       {seatClass.id === 'economy' && (
                         <>
                           <li>Standard legroom</li>
@@ -80,12 +80,12 @@ const FlightSelection = () => {
                     </ul>
                   </div>
                   <div className="text-right">
-                    <p className="text-2xl font-bold text-indigo-600 mb-4">
-                      ৳{seatClass.price.toLocaleString()}
+                    <p className="text-2xl font-bold text-[#ff4b2b] mb-4">
+                      ${seatClass.price.toLocaleString()}
                     </p>
                     <button
                       onClick={() => handleSelectClass(seatClass.id, seatClass.price)}
-                      className="btn"
+                      className=" px-4 py-2 rounded-md text-white font-semibold bg-[#ff4b2b]"
                     >
                       Select
                     </button>

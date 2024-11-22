@@ -63,18 +63,18 @@ const BookingConfirmation = () => {
             <div className="space-y-2">
               <div className="flex justify-between">
                 <span>Ticket Price</span>
-                <span>৳800 × {seats.length}</span>
+                <span>$800 × {seats.length}</span>
               </div>
               <div className="flex justify-between font-bold text-lg">
                 <span>Total Amount</span>
-                <span>৳{totalAmount}</span>
+                <span>${totalAmount}</span>
               </div>
             </div>
           </div>
 
           <button
             onClick={handlePayment}
-            className="w-full btn bg-indigo-600 py-2 rounded-md"
+            className="w-full btn bg-[#ff4b2b] py-2 rounded-md"
           >
             Proceed to Payment
           </button>
