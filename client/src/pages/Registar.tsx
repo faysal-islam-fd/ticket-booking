@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { User, Mail, Lock, Loader } from 'lucide-react';
+import toast, { Toaster } from 'react-hot-toast';
+import { useAuth } from '../context/AuthConext';
 
 const Register = () => {
   const [name, setName] = useState('');
@@ -12,31 +14,46 @@ const Register = () => {
 
   const navigate = useNavigate();
 
-  const register = async (name: string, email: string, password: string) => {
-    // Simulating an API call
-    console.log({ name, email, password });
-    return new Promise((resolve) => setTimeout(resolve, 2000));
-  };
-
+  const {setUser} = useAuth();
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      alert('Passwords do not match');
+      toast.error('Passwords do not match');
       return;
     }
     setIsLoading(true);
     try {
-      await register(name, email, password);
-      navigate('/dashboard'); // Redirect to the dashboard after successful registration
+      const res = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, email, password }),
+      })
+      const resData = await res.json();
+      console.log(resData);
+      
+      if(!resData.success){
+        toast.error(resData.message);
+        return
+      }
+      setUser(resData.user);
+      localStorage.setItem('user', JSON.stringify(resData.user.id));
+      toast.success(resData.message);
+
+      navigate('/dashboard'); 
     } catch (error) {
-      console.error('Registration failed:', error);
+      console.log(error);
+      
+      console.error("Registration failed");
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen text-white bg-[#121212] flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div className="min-h-screen text-stone-800 bg-[#121212] flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+      <Toaster />
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-200">
           Create a new account
@@ -128,7 +145,7 @@ const Register = () => {
               </button>
             </div>
             <div className="flex gap-1">
-              <p>Already have an account?</p>
+              <p className='text-stone-300'>Already have an account?</p>
               <Link to="/login" className="text-[#ff4b2b] underline">
                 Sign in
               </Link>

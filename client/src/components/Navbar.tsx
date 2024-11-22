@@ -1,17 +1,21 @@
 
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Menu, X, User, Phone, LogOut } from 'lucide-react';
+import { Menu, X, User, LogOut } from 'lucide-react';
+import { useAuth } from '../context/AuthConext';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = React.useState(false);
-  const user = true
+  const {user,logout} = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = () => {
+    logout();
     navigate('/');
   };
 
+  console.log("navbar executed");
+  
   return (
     <nav className="bg-[#121212] text-stone-200 shadow-lg fixed w-full z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -36,13 +40,13 @@ const Navbar = () => {
                     className="flex items-center  hover:text-[#ff4b2b]"
                   >
                     <User className="w-5 h-5 mr-1" />
-                    <span>Dashboard</span>
+                    <span>{user.name}</span>
                   </Link>
                   <button
                     onClick={handleLogout}
                     className="flex items-center  hover:text-[#ff4b2b]"
                   >
-                    <LogOut className="w-5 h-5 mr-1" />
+                    <LogOut onClick={logout} className="w-5 h-5 mr-1" />
                     <span>Logout</span>
                   </button>
                 </div>

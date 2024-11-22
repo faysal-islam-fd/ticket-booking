@@ -1,35 +1,30 @@
 
 
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import { User, AuthContextType } from '../types';
 
  const AuthContext = createContext<AuthContextType | null>(null);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
 
-  const login = async (email: string, password: string) => {
-    setIsLoading(true);
-    try {
-      //data save to DB
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      setUser({
-        id: '1',
-        name: 'John Doe',
-        email: email,
-      });
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
+  console.log(user);
+useEffect(()=>{
+const savedUser = localStorage.getItem("user")
+if(savedUser){
+  setUser(JSON.parse(savedUser));
+}
+else{
+  setUser(null);
+}
+},[user])
   const logout = () => {
+    localStorage.removeItem('user');    
     setUser(null);
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, isLoading }}>
+    <AuthContext.Provider value={{ user,setUser, logout}}>
       {children}
     </AuthContext.Provider>
   );
