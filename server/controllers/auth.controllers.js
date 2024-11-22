@@ -22,3 +22,25 @@ export const register  = async(req,res) => {
         res.status(500).json({error: "Internal server error"})
     }
 }
+
+export const login = async(req,res) => {
+    try{
+        const {email, password} = req.body;
+        if(!email || !password){
+            return res.status(400).json({error: "All fields are required"})
+        }
+        const user = await User.findOne({email})
+        if(!user){
+            return res.status(400).json({error: "User not found"})
+        }
+        const isMatch = await bcrypt.compare(password, user.password);
+        if(!isMatch){
+            return res.status(400).json({error: "Password is incorrect"})
+        }
+        res.status(200).json({success: true, message: "User logged in successfully"})
+    }
+    catch(error){
+        console.log(error.message);
+        res.status(500).json({error: "Internal server error"})
+    }
+}
