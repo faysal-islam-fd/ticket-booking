@@ -1,5 +1,6 @@
 import User from "../models/user.models.js";
 import bcrypt from "bcryptjs";
+import { generateToken } from "../utils/generateToken.js";
 
 export const register  = async(req,res) => {
     try{
@@ -13,6 +14,7 @@ export const register  = async(req,res) => {
         }
         const hashedPassword = await bcrypt.hash(password, 8);
         const user = new User({name, email, password: hashedPassword});
+        generateToken(user._id,res);
         await user.save();
         res.status(201).json({success: true,message: "User registered successfully"})
     }
@@ -37,6 +39,7 @@ export const login = async(req,res) => {
         if(!isMatch){
             return res.status(400).json({error: "Password is incorrect"})
         }
+        generateToken(user._id,res);
         res.status(200).json({success: true, message: "User logged in successfully"})
     }
     catch(error){
