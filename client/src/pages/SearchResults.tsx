@@ -83,14 +83,14 @@ const SearchResults = () => {
   const TypeIcon = type === 'bus' ? Bus : Plane;
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-24 pb-12">
+    <div className="min-h-screen text-white bg-[#121212] pt-24 pb-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Search Summary */}
-        <div className="bg-white rounded-lg shadow-md p-6 mb-8">
+        <div className="bg-[#1a1a1a] rounded-lg shadow-md p-6 mb-8">
           <div className="flex items-center justify-between flex-wrap gap-4">
             <div className="flex items-center space-x-8">
               <div className="flex items-center space-x-2">
-                <TypeIcon className="h-6 w-6 text-indigo-600" />
+                <TypeIcon className="h-6 w-6 text-[#ff4b2b]" />
                 <span className="text-lg font-medium capitalize">{type}</span>
               </div>
               <div className="flex items-center space-x-2">
@@ -106,7 +106,7 @@ const SearchResults = () => {
             </div>
             <button 
               onClick={() => window.history.back()}
-              className="text-indigo-600 hover:text-indigo-800"
+              className="text-[#ff4b2b]"
             >
               Modify Search
             </button>
@@ -116,7 +116,7 @@ const SearchResults = () => {
         {/* Results */}
         <div className="space-y-4">
           {results.map((result) => (
-            <div key={result.id} className="bg-white rounded-lg shadow-md p-6">
+            <div key={result.id} className="bg-[#1a1a1a] rounded-lg shadow-md p-6">
               <div className="flex items-center justify-between flex-wrap gap-6">
                 <div className="space-y-2">
                   <h3 className="text-lg font-semibold">{result.operator}</h3>
@@ -147,7 +147,7 @@ const SearchResults = () => {
                 </div>
 
                 <div className="space-y-2 text-center">
-                  <div className="text-lg font-medium text-indigo-600">
+                  <div className="text-lg font-medium text-[#ff4b2b]">
                     ৳{result.price.toLocaleString()}
                   </div>
                   <div className="text-sm text-gray-500">
@@ -156,7 +156,7 @@ const SearchResults = () => {
                 </div>
 
                 <button 
-                  className="btn"
+                  className="px-4 py-2 rounded-md font-semibold bg-[#ff4b2b]"
                   onClick={() => handleSelect(result.id)}
                 >
                   {type === 'bus' ? 'Select Seats' : 'Select'}

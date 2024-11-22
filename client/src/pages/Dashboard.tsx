@@ -30,16 +30,16 @@ const Dashboard = () => {
   ]);
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-16">
+    <div className="min-h-screen text-white bg-[#121212] pt-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
-          <h1 className="text-2xl font-bold text-gray-900 mb-2">
+        <div className="bg-[#1a1a1a] rounded-lg shadow-lg p-6 mb-8">
+          <h1 className="text-2xl font-bold text-stone-100 mb-2">
             Welcome back, {user?.name}!
           </h1>
-          <p className="text-gray-600">{user?.email}</p>
+          <p className="text-stone-100">{user?.email}</p>
         </div>
 
-        <div className="bg-white rounded-lg shadow-lg p-6">
+        <div className="bg-[#1a1a1a] rounded-lg shadow-lg p-6">
           <h2 className="text-xl font-semibold mb-6">Your Tickets</h2>
           <div className="space-y-4">
             {tickets.map((ticket) => (
@@ -61,13 +61,13 @@ const Dashboard = () => {
                         {ticket.status}
                       </span>
                     </div>
-                    <div className="flex items-center space-x-2 text-gray-600">
+                    <div className="flex items-center space-x-2 text-gray-300">
                       <MapPin className="h-4 w-4" />
                       <span>{ticket.from}</span>
                       <span>→</span>
                       <span>{ticket.to}</span>
                     </div>
-                    <div className="flex items-center space-x-2 text-gray-600 mt-2">
+                    <div className="flex items-center space-x-2 text-gray-300 mt-2">
                       <Calendar className="h-4 w-4" />
                       <span>{new Date(ticket.date).toLocaleDateString()}</span>
                     </div>

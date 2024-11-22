@@ -53,9 +53,9 @@ const SeatSelection = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-24 pb-12">
+    <div className="min-h-screen bg-[#121212] pt-24 pb-12">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white rounded-lg shadow-md p-6">
+        <div className="bg-[#1a1a1a] text-white rounded-lg shadow-md p-6">
           <h2 className="text-2xl font-bold mb-6">Select Your Seats</h2>
 
           <div className="mb-8">
@@ -121,9 +121,9 @@ const SeatSelection = () => {
             <button
               onClick={handleConfirm}
               disabled={selectedSeats.length === 0}
-              className="btn disabled:opacity-50"
+              className="btn disabled:opacity-50 px-4 py-2 bg-indigo-600 rounded-md font-semibold"
             >
-              Continue to Payment
+              Continue to Payment 
             </button>
           </div>
         </div>

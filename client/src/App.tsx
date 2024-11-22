@@ -9,6 +9,7 @@ import Dashboard from "./pages/Dashboard"
 import { AuthProvider } from "./context/AuthConext"
 import BookingConfirmation from "./pages/BookingConfirmation"
 import UserProfile from "./pages/UserProfile"
+import FlightSelection from "./pages/FlightSelection"
 
 
 
@@ -29,6 +30,14 @@ const App = () => {
                 element={
                   <AuthGuard>
                     <UserProfile />
+                  </AuthGuard>
+                }
+              />
+              <Route
+                path="/flight/:id"
+                element={
+                  <AuthGuard>
+                    <FlightSelection />
                   </AuthGuard>
                 }
               />    

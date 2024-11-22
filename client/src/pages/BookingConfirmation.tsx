@@ -17,9 +17,9 @@ const BookingConfirmation = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-24 pb-12">
+    <div className="min-h-screen text-white bg-[#121212] pt-24 pb-12">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white rounded-lg shadow-md p-6">
+        <div className="bg-[#1a1a1a]  rounded-lg shadow-md p-6">
           <div className="text-center mb-8">
             <div className="mx-auto w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-4">
               <Check className="w-6 h-6 text-green-600" />
@@ -52,7 +52,7 @@ const BookingConfirmation = () => {
                 {seats.map((seat) => (
                   <span
                     key={seat}
-                    className="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm"
+                    className="px-3 py-1 bg-indigo-100 text-[#ff4b2b] rounded-full text-sm"
                   >
                     {seat}
                   </span>
@@ -74,7 +74,7 @@ const BookingConfirmation = () => {
 
           <button
             onClick={handlePayment}
-            className="w-full btn"
+            className="w-full btn bg-indigo-600 py-2 rounded-md"
           >
             Proceed to Payment
           </button>
