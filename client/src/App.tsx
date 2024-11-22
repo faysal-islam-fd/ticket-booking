@@ -10,6 +10,8 @@ import { AuthProvider } from "./context/AuthConext"
 import BookingConfirmation from "./pages/BookingConfirmation"
 import UserProfile from "./pages/UserProfile"
 import FlightSelection from "./pages/FlightSelection"
+import Login from "./pages/Login"
+import Register from "./pages/Registar"
 
 
 
@@ -23,6 +25,8 @@ const App = () => {
           <Navbar/>
             <Routes>
               <Route path="/" element={<><Home /></>} />
+              <Route path="/signup" element={<Register />} />
+              <Route path="/login" element={<Login />} />
               <Route path="/search" element={<SearchResults />} />
               <Route path="/dashboard" element={<AuthGuard><Dashboard /></AuthGuard>} />
               <Route

@@ -73,7 +73,7 @@ const Dashboard = () => {
                     </div>
                   </div>
                   <div className="text-right">
-                    <p className="text-lg font-bold text-indigo-600">৳{ticket.price}</p>
+                    <p className="text-lg font-bold text-[#ff4b2b]">৳{ticket.price}</p>
                   </div>
                 </div>
               </div>
