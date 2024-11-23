@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { User, Mail, Phone, Shield } from 'lucide-react';
+import { User, Mail } from 'lucide-react';
 import { useAuth } from '../context/AuthConext';
 
 const UserProfile = () => {

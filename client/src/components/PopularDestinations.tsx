@@ -4,25 +4,26 @@ import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const destinations = [
-  {
+  { id:1,
     name: "Cox's Bazar",
     image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2073',
     description: 'World\'s longest natural sea beach',
     price: '1200',
   },
-  {
+  { 
+    id:2,
     name: 'Sundarbans',
     image: 'https://images.unsplash.com/photo-1588952159215-a4b39193464e?q=80&w=2069',
     description: 'World\'s largest mangrove forest',
     price: '2500',
   },
-  {
+  { id:3,
     name: 'Sylhet',
     image: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=2070',
     description: 'Tea gardens and natural beauty',
     price: '600',
   },
-  {
+  { id:4,
     name: 'Rangamati',
     image: 'https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?q=80&w=2070',
     description: 'Lakes and hill tracts',
@@ -57,7 +58,7 @@ const PopularDestinations = () => {
                     <p className="text-gray-400">Starting from</p>
                     <p className="text-[#ff4b2b] font-bold">৳{destination.price}</p>
                   </div>
-                  <Link to="/booking" className="text-[#ff4b2b] hover:text-[#ff3b1b] flex items-center">
+                  <Link to={`booking/${destination.id}`} className="text-[#ff4b2b] hover:text-[#ff3b1b] flex items-center">
                     Book Now
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>

@@ -1,9 +1,9 @@
 
-import { useParams, useSearchParams, useNavigate } from 'react-router-dom';
+import {  useSearchParams, useNavigate } from 'react-router-dom';
 import { Check, Calendar, MapPin } from 'lucide-react';
 
 const BookingConfirmation = () => {
-  const { id } = useParams();
+
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   

@@ -2,8 +2,8 @@
 
 
 import React, { useState } from 'react';
-import { useParams, useSearchParams, useNavigate } from 'react-router-dom';
-import { Check, X, Car } from 'lucide-react';
+import { useParams, useNavigate } from 'react-router-dom';
+import {  Car } from 'lucide-react';
 
 interface Seat {
   id: string;
@@ -13,10 +13,8 @@ interface Seat {
 
 const SeatSelection = () => {
   const { id } = useParams();
-  const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const type = searchParams.get('type') || 'bus';
-  
+ 
   const generateSeats = (): Seat[] => {
     const totalRows = 10;
     const seatsPerRow = 4;

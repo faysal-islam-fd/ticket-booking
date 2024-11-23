@@ -1,19 +1,15 @@
 
 
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 import { User, AuthContextType } from '../types';
 
  const AuthContext = createContext<AuthContextType | null>(null);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<User | null>(localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user') as string) : null);
 
-  useEffect(() => {
-    const user = localStorage.getItem('user');
-    if (user) {
-      setUser(JSON.parse(user));
-    }
-  }, []);
+  
+  console.log(user);
   
   const logout = () => {
     localStorage.removeItem('user');    
